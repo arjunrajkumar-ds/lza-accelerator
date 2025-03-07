@@ -1,6 +1,8 @@
 # lza-accelerator
 
 ### OU Structure
+<img width="635" alt="image" src="https://github.com/user-attachments/assets/479ef827-dd11-4f07-8a3f-2dca4fd7fdd2" />
+
 - The `Root` OU houses the Management account. LZA is installed into this account & orchestrates CloudFormation stacks via CDK across other accounts
 - The `Security` OU houses the `Log Archive` & `Audit / Security Tooling` accounts. 
 	[[AWS Control Tower]] provisions this OU & related accounts automatically
