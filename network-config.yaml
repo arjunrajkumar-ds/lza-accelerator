@@ -1,0 +1,45 @@
+homeRegion: &HOME_REGION ap-southeast-2
+
+defaultVpc:
+  delete: false
+  excludeAccounts: []
+transitGateways: []
+endpointPolicies: []
+vpcs: []
+
+centralNetworkServices: # setting up IPAM
+  delegatedAdminAccount: Management
+  ipams:
+    - name: accelerator-ipam
+      region: *HOME_REGION
+      description: Accelerator IPAM
+      operatingRegions:
+        - *HOME_REGION
+      pools:
+        - name: &BASE_POOL base-pool
+          description: accelerator-base
+          provisionedCidrs:
+            - 10.0.0.0/8
+            - 172.16.0.0/12
+            - 192.168.0.0/16
+        - name: home-region-pool
+          description: Pool for home region
+          locale: *HOME_REGION
+          provisionedCidrs:
+            - 10.0.0.0/16
+          sourceIpamPool: *BASE_POOL
+        - name: home-region-prod-pool
+          description: Pool for prod environment
+          allocationResourceTags:
+            - key: env
+              value: prod
+          locale: *HOME_REGION
+          provisionedCidrs:
+            - 10.0.0.0/20
+          sourceIpamPool: home-region-pool
+        - name: core-network-pool
+          description: Core network pool
+          locale: *HOME_REGION
+          provisionedCidrs:
+            - 192.168.0.0/18
+          sourceIpamPool: *BASE_POOL
