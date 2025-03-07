@@ -12,6 +12,8 @@
 - Workload accounts are not housed in OUs, unless a new OU structure is defined in `organization-config.yaml`. Additional workload accounts can be defined in `accounts-config.yaml`
 
 ### Components
+<img width="630" alt="image" src="https://github.com/user-attachments/assets/49f99835-05db-442b-a8ba-ae80b38a5491" />
+
 - Installer pipeline
 - CodeBuild project
 	- Multiple CodeBuild stages are involved
